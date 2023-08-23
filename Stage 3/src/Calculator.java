@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.Scanner;1
 public class Main {
     public static void main(String[] args) throws ArithmeticException {
         Scanner scan = new Scanner(System.in);
