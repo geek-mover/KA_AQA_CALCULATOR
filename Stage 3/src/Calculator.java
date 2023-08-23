@@ -1,18 +1,21 @@
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArithmeticException {
         Scanner scan = new Scanner(System.in);
         System.out.print("Input:\n");
         String input = scan.nextLine();
-        scan.close();
+        String result = calc(input);
+        System.out.println(result);
+    }
+    public static String calc(String input) throws ArithmeticException {
         String[] elements = input.split(" ");
         if (elements.length != 3 & elements.length < 3) {
             System.out.println("Output:\nthrows Exception //т.к. строка не является математической операцией.");
-            return;
+            throw new ArithmeticException("Error! Details in the output!");
         }
         if (elements.length != 3 & elements.length > 3) {
             System.out.println("Output:\nthrows Exception //т.к. формат математической операции, не удовлетворяет заданию – два операнда и один оператор.");
-            return;
+            throw new ArithmeticException("Error! Details in the output!");
         }
         int a;
         int b;
@@ -21,29 +24,28 @@ public class Main {
             b = Integer.parseInt(elements[2]);
         } catch (NumberFormatException e) {
             System.out.println("Output:\nthrows Exception //т.к. введено не корректное число.");
-            return;
+            throw new ArithmeticException("Error! Details in the output!");
         }
         if (a > 10 || b > 10) {
             System.out.println("Output:\nthrows Exception //т.к. формат математической операции, не удовлетворяет заданию – только числа от 1 до 10 включительно.");
-            return;
+            throw new ArithmeticException("Error! Details in the output!");
         }
-        int result;
-        switch (elements[1]) {
-            case "+" -> result = a + b;
-            case "-" -> result = a - b;
-            case "*" -> result = a * b;
+        String operator = elements[1];
+        int result = switch (operator) {
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "*" -> a * b;
             case "/" -> {
                 if (b == 0) {
                     System.out.println("Output:\nthrows Exception //т.к. на ноль делить нельзя.");
-                    return;
+                    throw new ArithmeticException("Error! Details in the output!");
                 }
-                result = a / b;
+                yield a / b;
             }
-            default -> {
-                System.out.println("Output:\nthrows Exception //т.к. введён не корректный оператор.");
-                return;
+            default -> { System.out.println("Output:\nthrows Exception //т.к. введён не корректный оператор.");
+                    throw new ArithmeticException("Error! Details in the output!");
             }
-        }
-        System.out.println("Output:\n" + result);
+        };
+        return "Output:\n" + result;
     }
 }
