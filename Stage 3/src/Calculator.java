@@ -1,9 +1,6 @@
 import java.util.Scanner;
 public class Main {
-    public static String calc(String input) {
-        return input;
-    }
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Input:\n");
         String input = scan.nextLine();
@@ -32,25 +29,20 @@ public class Main {
         }
         int result;
         switch (elements[1]) {
-            case "+":
-                result = a + b;
-                break;
-            case "-":
-                result = a - b;
-                break;
-            case "*":
-                result = a * b;
-                break;
-            case "/":
+            case "+" -> result = a + b;
+            case "-" -> result = a - b;
+            case "*" -> result = a * b;
+            case "/" -> {
                 if (b == 0) {
                     System.out.println("Output:\nthrows Exception //т.к. на ноль делить нельзя.");
                     return;
                 }
                 result = a / b;
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("Output:\nthrows Exception //т.к. введён не корректный оператор.");
                 return;
+            }
         }
         System.out.println("Output:\n" + result);
     }
