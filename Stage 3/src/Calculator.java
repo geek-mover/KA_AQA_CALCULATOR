@@ -1,11 +1,12 @@
 import java.util.Scanner;
-public class Calculator {
+public class Calculator_03 {
     public static void main(String[] args) throws ArithmeticException {
         Scanner scan = new Scanner(System.in);
         System.out.print("Input:\n");
         String input = scan.nextLine();
         String result = calc(input);
         System.out.println(result);
+        scan.close();
     }
     public static String calc(String input) throws ArithmeticException {
         String[] elements = input.split(" ");
@@ -26,7 +27,7 @@ public class Calculator {
             System.out.println("Output:\nthrows Exception //т.к. введено не корректное число.");
             throw new ArithmeticException("Error! Details in the output!");
         }
-        if (a > 10 || b > 10) {
+        if (a <= 0 || a > 10 || b <= 0 || b > 10) {
             System.out.println("Output:\nthrows Exception //т.к. формат математической операции, не удовлетворяет заданию – только числа от 1 до 10 включительно.");
             throw new ArithmeticException("Error! Details in the output!");
         }
@@ -35,14 +36,9 @@ public class Calculator {
             case "+" -> a + b;
             case "-" -> a - b;
             case "*" -> a * b;
-            case "/" -> {
-                if (b == 0) {
-                    System.out.println("Output:\nthrows Exception //т.к. на ноль делить нельзя.");
-                    throw new ArithmeticException("Error! Details in the output!");
-                }
-                yield a / b;
-            }
-            default -> { System.out.println("Output:\nthrows Exception //т.к. введён не корректный оператор.");
+            case "/" -> a / b;
+            default -> {
+                System.out.println("Output:\nthrows Exception //т.к. введён не корректный оператор.");
                     throw new ArithmeticException("Error! Details in the output!");
             }
         };
