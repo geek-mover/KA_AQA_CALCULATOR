@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Calculator_03 {
+public class Calculator {
     public static void main(String[] args) throws ArithmeticException {
         Scanner scan = new Scanner(System.in);
         System.out.print("Input:\n");
